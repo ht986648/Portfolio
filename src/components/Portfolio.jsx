@@ -62,7 +62,7 @@ const Portfolio = () => {
       description: 'Decentralized legal contract platform on Ethereum with IPFS storage, handling 500+ transactions with 98% verification accuracy. Secured 3rd place at IIT Patna Hackathon.',
       techStack: ['React.js', 'Node.js', 'Web3', 'Solidity', 'Pinata', 'IPFS'],
       github: 'https://github.com/ht986648',
-      demo: '#',
+      demo: 'https://contractify-frontend.onrender.com/',
       image: '📜',
       achievement: '🥉 3rd Place - IIT Patna Hackathon',
       highlights: ['500+ transactions handled', '98% verification accuracy', 'Zero data loss', '40% faster deployment']
@@ -72,7 +72,7 @@ const Portfolio = () => {
       description: 'Full-stack e-commerce site with dynamic routing, product listings, shopping cart, and Stripe checkout. Features OAuth authentication and responsive design.',
       techStack: ['Next.js 15', 'Prisma', 'NextAuth', 'Stripe', 'Tailwind CSS', 'shadcn/ui'],
       github: 'https://github.com/ht986648',
-      demo: '#',
+      demo: 'https://nextjs-ecommerce-seven-brown.vercel.app/',
       image: '🛒',
       status: 'In Development',
       highlights: ['OAuth Google/GitHub login', 'Stripe payment integration', 'Responsive UI design', 'Database consistency']
@@ -82,7 +82,7 @@ const Portfolio = () => {
       description: 'Intelligent resume builder with file uploads to AWS S3, semantic search capabilities, and real-time Q&A from user data using AI technologies.',
       techStack: ['Next.js', 'AWS S3', 'Pinecone', 'LangChain', 'OpenAI API', 'Drizzle'],
       github: 'https://github.com/ht986648',
-      demo: '#',
+      demo: 'https://ai-resume-builder-kappa-seven.vercel.app/',
       image: '🤖',
       highlights: ['AI-powered document analysis', 'Vector embeddings storage', 'Multi-auth options', 'Semantic search']
     },
@@ -91,7 +91,7 @@ const Portfolio = () => {
       description: 'Real-time weather application with current conditions and 5-day forecasts for multiple cities. SEO-optimized with fast client-side routing.',
       techStack: ['Next.js', 'OpenWeather API', 'Tailwind CSS', 'Vercel'],
       github: 'https://github.com/ht986648',
-      demo: '#',
+      demo: 'https://weather-app-nextjs-seven-rho.vercel.app/',
       image: '🌤️',
       highlights: ['Real-time weather data', '5-day forecast', 'SEO optimization', 'Fast loading']
     }
