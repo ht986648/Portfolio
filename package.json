@@ -22,9 +22,12 @@
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
     "gsap": "^3.12.8",
+    "locomotive-scroll": "^5.0.0-beta.21",
+    "lenis": "^1.1.13",
     "lucide-react": "^0.515.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-intersection-observer": "^9.13.1",
     "tailwind-merge": "^2.5.4",
     "tailwindcss": "^4.1.10",
     "tailwindcss-animate": "^1.0.7"

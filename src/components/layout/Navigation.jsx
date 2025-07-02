@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/button';
+import MagneticButton from '../MagneticButton';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,7 +40,7 @@ const Navigation = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         scrolled 
           ? 'bg-gray-900/95 backdrop-blur-md border-b border-gray-800 shadow-lg glass-morphism' 
           : 'bg-transparent'
@@ -68,10 +69,9 @@ const Navigation = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Button
-                  variant="ghost"
+                <MagneticButton
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`relative px-4 py-2 transition-all duration-300 nav-item-3d ${
+                  className={`relative px-4 py-2 transition-all duration-300 nav-item-3d rounded-lg ${
                     activeSection === item.toLowerCase() 
                       ? 'text-blue-400' 
                       : 'text-gray-300 hover:text-white'
@@ -86,16 +86,14 @@ const Navigation = () => {
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
                   )}
-                </Button>
+                </MagneticButton>
               </motion.div>
             ))}
           </div>
 
           {/* Enhanced Mobile menu button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="md:hidden button-3d"
+          <MagneticButton
+            className="md:hidden button-3d p-2 rounded-lg"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <AnimatePresence mode="wait">
@@ -121,7 +119,7 @@ const Navigation = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-          </Button>
+          </MagneticButton>
         </div>
 
         {/* Enhanced Mobile Navigation */}
@@ -142,13 +140,12 @@ const Navigation = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <Button
-                      variant="ghost"
+                    <MagneticButton
                       onClick={() => scrollToSection(item.toLowerCase())}
-                      className="w-full justify-start text-left py-3 hover:text-blue-400 transition-colors nav-item-3d"
+                      className="w-full justify-start text-left py-3 px-4 hover:text-blue-400 transition-colors nav-item-3d rounded-lg"
                     >
                       {item}
-                    </Button>
+                    </MagneticButton>
                   </motion.div>
                 ))}
               </div>

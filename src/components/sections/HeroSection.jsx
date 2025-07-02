@@ -1,13 +1,22 @@
 import React, { useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { Github, Linkedin, Mail, ChevronDown, Download } from 'lucide-react';
 import { Button } from '../ui/button';
+import MagneticButton from '../MagneticButton';
+import ScrollReveal from '../ScrollReveal';
 
 const HeroSection = () => {
   const heroRef = useRef(null);
   const avatarRef = useRef(null);
-  const textRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -31,6 +40,36 @@ const HeroSection = () => {
         repeat: -1,
         yoyo: true
       });
+
+      // Text reveal animation
+      gsap.fromTo('.hero-text', {
+        y: 100,
+        opacity: 0,
+        rotationX: 90
+      }, {
+        y: 0,
+        opacity: 1,
+        rotationX: 0,
+        duration: 1.2,
+        ease: "back.out(1.7)",
+        stagger: 0.2,
+        delay: 0.5
+      });
+
+      // Button entrance animation
+      gsap.fromTo('.hero-button', {
+        y: 50,
+        opacity: 0,
+        scale: 0.8
+      }, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "back.out(1.7)",
+        stagger: 0.1,
+        delay: 1.2
+      });
     }, heroRef);
 
     return () => ctx.revert();
@@ -40,49 +79,55 @@ const HeroSection = () => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
   return (
-    <section 
+    <motion.section 
       ref={heroRef}
       id="home" 
       className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden"
+      style={{ y, opacity, scale }}
     >
       {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse float-3d"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000 float-3d"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000 float-3d"></div>
+        <motion.div 
+          className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl float-element"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 180, 360]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div 
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl float-element"
+          animate={{
+            scale: [1.2, 1, 1.2],
+            rotate: [360, 180, 0]
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
+        <motion.div 
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl float-element"
+          animate={{
+            scale: [1, 1.3, 1],
+            rotate: [0, 360]
+          }}
+          transition={{
+            duration: 30,
+            repeat: Infinity,
+            ease: "linear"
+          }}
+        />
       </div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="text-center max-w-4xl mx-auto relative z-10"
-      >
-        <motion.div variants={itemVariants} className="mb-8">
+      <div className="text-center max-w-4xl mx-auto relative z-10">
+        <ScrollReveal delay={0.2}>
           <motion.div
             ref={avatarRef}
             className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl font-bold shadow-2xl avatar-3d pulse-3d"
@@ -96,109 +141,97 @@ const HeroSection = () => {
           >
             HT
           </motion.div>
-          
-          <motion.h1 
-            variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-4"
-          >
+        </ScrollReveal>
+        
+        <ScrollReveal delay={0.4}>
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 hero-text text-reveal">
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent gradient-text">
               Himanshu Tiwari
             </span>
-          </motion.h1>
-          
-          <motion.p 
-            variants={itemVariants}
-            className="text-xl md:text-2xl text-gray-300 mb-6"
-          >
+          </h1>
+        </ScrollReveal>
+        
+        <ScrollReveal delay={0.6}>
+          <p className="text-xl md:text-2xl text-gray-300 mb-6 hero-text">
             Full-Stack Developer & Blockchain Enthusiast
-          </motion.p>
-          
-          <motion.p 
-            variants={itemVariants}
-            className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed"
-          >
+          </p>
+        </ScrollReveal>
+        
+        <ScrollReveal delay={0.8}>
+          <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto leading-relaxed hero-text">
             B.Tech CSE student at IIIT Bhagalpur (2027) • 1000+ LeetCode problems solved • 
             Building the future with code and blockchain technology
-          </motion.p>
-        </motion.div>
+          </p>
+        </ScrollReveal>
 
-        <motion.div 
-          variants={itemVariants}
-          className="flex flex-wrap justify-center gap-4 mb-12"
-        >
-          <Button
-            asChild
-            size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg button-3d"
-          >
-            <a
-              href="https://github.com/ht986648"
-              target="_blank"
-              rel="noopener noreferrer"
+        <ScrollReveal delay={1.0}>
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            <MagneticButton
+              asChild
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg button-3d hero-button px-6 py-3 rounded-lg"
             >
-              <Github className="mr-2 h-5 w-5" />
-              GitHub
-            </a>
-          </Button>
-          
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white button-3d glass-morphism"
-          >
-            <a
-              href="https://www.linkedin.com/in/himanshu-tiwari-97a738291/"
-              target="_blank"
-              rel="noopener noreferrer"
+              <a
+                href="https://github.com/ht986648"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Github className="h-5 w-5" />
+                GitHub
+              </a>
+            </MagneticButton>
+            
+            <MagneticButton
+              asChild
+              className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white button-3d glass-morphism hero-button px-6 py-3 rounded-lg border"
             >
-              <Linkedin className="mr-2 h-5 w-5" />
-              LinkedIn
-            </a>
-          </Button>
-          
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white button-3d glass-morphism"
-          >
-            <a href="mailto:himanshu.230101059@iiitbh.ac.in">
-              <Mail className="mr-2 h-5 w-5" />
-              Contact Me
-            </a>
-          </Button>
-          
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white button-3d glass-morphism neon-glow"
-          >
-            <Download className="mr-2 h-5 w-5" />
-            Resume
-          </Button>
-        </motion.div>
+              <a
+                href="https://www.linkedin.com/in/himanshu-tiwari-97a738291/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2"
+              >
+                <Linkedin className="h-5 w-5" />
+                LinkedIn
+              </a>
+            </MagneticButton>
+            
+            <MagneticButton
+              asChild
+              className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white button-3d glass-morphism hero-button px-6 py-3 rounded-lg border"
+            >
+              <a href="mailto:himanshu.230101059@iiitbh.ac.in" className="flex items-center gap-2">
+                <Mail className="h-5 w-5" />
+                Contact Me
+              </a>
+            </MagneticButton>
+            
+            <MagneticButton className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white button-3d glass-morphism neon-glow hero-button px-6 py-3 rounded-lg border">
+              <Download className="mr-2 h-5 w-5" />
+              Resume
+            </MagneticButton>
+          </div>
+        </ScrollReveal>
 
-        <motion.div
-          variants={itemVariants}
-          className="flex justify-center"
-        >
-          <motion.button
-            onClick={() => scrollToSection('about')}
-            className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800/50 button-3d"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ 
-              scale: 1.1,
-              rotateX: 5,
-              boxShadow: "0 10px 20px rgba(59, 130, 246, 0.3)"
-            }}
-          >
-            <ChevronDown size={32} />
-          </motion.button>
-        </motion.div>
-      </motion.div>
-    </section>
+        <ScrollReveal delay={1.2}>
+          <div className="flex justify-center">
+            <motion.button
+              onClick={() => scrollToSection('about')}
+              className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800/50 button-3d"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ 
+                scale: 1.1,
+                rotateX: 5,
+                boxShadow: "0 10px 20px rgba(59, 130, 246, 0.3)"
+              }}
+            >
+              <ChevronDown size={32} />
+            </motion.button>
+          </div>
+        </ScrollReveal>
+      </div>
+    </motion.section>
   );
 };
 
