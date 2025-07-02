@@ -53,7 +53,7 @@ const ContactSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get In <span className="text-blue-400">Touch</span>
+            Get In <span className="text-blue-400 gradient-text">Touch</span>
           </h2>
           <p className="text-xl text-gray-300 mb-4">
             I'm always open to discussing new opportunities and interesting projects
@@ -65,7 +65,7 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          {/* Contact Methods */}
+          {/* Enhanced Contact Methods */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -81,11 +81,19 @@ const ContactSection = () => {
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                   whileHover={{ y: -5 }}
                 >
-                  <Card className="bg-gray-800/50 border-gray-700 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer h-full">
+                  <Card className="bg-gray-800/50 border-gray-700 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer h-full contact-card-3d glass-morphism">
                     <CardContent className="p-6 text-center">
-                      <div className={`w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r ${method.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}>
+                      <motion.div 
+                        className={`w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-r ${method.color} flex items-center justify-center text-white group-hover:scale-110 transition-transform`}
+                        whileHover={{ 
+                          scale: 1.3,
+                          rotateY: 15,
+                          rotateX: -10,
+                          boxShadow: "0 15px 30px rgba(59, 130, 246, 0.4)"
+                        }}
+                      >
                         {method.icon}
-                      </div>
+                      </motion.div>
                       <CardTitle className="text-lg mb-2 group-hover:text-blue-400 transition-colors">
                         {method.title}
                       </CardTitle>
@@ -94,7 +102,7 @@ const ContactSection = () => {
                         asChild
                         variant="outline"
                         size="sm"
-                        className="border-gray-600 hover:border-blue-500 hover:text-blue-400"
+                        className="border-gray-600 hover:border-blue-500 hover:text-blue-400 button-3d glass-morphism"
                       >
                         <a
                           href={method.href}
@@ -112,16 +120,24 @@ const ContactSection = () => {
             </div>
           </motion.div>
 
-          {/* Quick Info & Links */}
+          {/* Enhanced Quick Info & Links */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Card className="bg-gray-800/50 border-gray-700 h-full">
+            <Card className="bg-gray-800/50 border-gray-700 h-full card-3d-tilt glass-morphism">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
-                  <MapPin className="h-5 w-5 text-blue-400" />
+                  <motion.div
+                    whileHover={{ 
+                      scale: 1.2,
+                      rotateY: 15,
+                      rotateX: -10
+                    }}
+                  >
+                    <MapPin className="h-5 w-5 text-blue-400" />
+                  </motion.div>
                   Quick Info
                 </CardTitle>
               </CardHeader>
@@ -134,7 +150,18 @@ const ContactSection = () => {
                 <div>
                   <h4 className="font-semibold text-white mb-2">Status</h4>
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    <motion.div 
+                      className="w-2 h-2 bg-green-400 rounded-full"
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        opacity: [1, 0.7, 1]
+                      }}
+                      transition={{ 
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
                     <span className="text-green-400 text-sm">Available for opportunities</span>
                   </div>
                 </div>
@@ -150,14 +177,22 @@ const ContactSection = () => {
                         asChild
                         variant="ghost"
                         size="sm"
-                        className="w-full justify-start text-gray-400 hover:text-blue-400 hover:bg-gray-700/50"
+                        className="w-full justify-start text-gray-400 hover:text-blue-400 hover:bg-gray-700/50 nav-item-3d"
                       >
                         <a
                           href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          <span className="mr-2">{link.icon}</span>
+                          <motion.span 
+                            className="mr-2"
+                            whileHover={{ 
+                              scale: 1.2,
+                              rotateY: 15
+                            }}
+                          >
+                            {link.icon}
+                          </motion.span>
                           {link.name}
                         </a>
                       </Button>
@@ -169,14 +204,14 @@ const ContactSection = () => {
           </motion.div>
         </div>
 
-        {/* Call to Action */}
+        {/* Enhanced Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center"
         >
-          <Card className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-blue-500/30">
+          <Card className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 border-blue-500/30 card-3d glass-morphism neon-glow">
             <CardContent className="p-8">
               <h3 className="text-2xl font-bold mb-4 text-white">
                 Ready to start a project together?
@@ -189,7 +224,7 @@ const ContactSection = () => {
                 <Button
                   asChild
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="bg-blue-600 hover:bg-blue-700 text-white shadow-lg button-3d neon-glow"
                 >
                   <a href="mailto:himanshu.230101059@iiitbh.ac.in">
                     <Mail className="mr-2 h-5 w-5" />
@@ -200,7 +235,7 @@ const ContactSection = () => {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white"
+                  className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white button-3d glass-morphism"
                 >
                   <a
                     href="https://www.linkedin.com/in/himanshu-tiwari-97a738291/"
@@ -216,7 +251,7 @@ const ContactSection = () => {
           </Card>
         </motion.div>
 
-        {/* Footer */}
+        {/* Enhanced Footer */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
@@ -231,7 +266,7 @@ const ContactSection = () => {
               asChild
               variant="ghost"
               size="sm"
-              className="text-gray-400 hover:text-blue-400"
+              className="text-gray-400 hover:text-blue-400 nav-item-3d"
             >
               <a href="#home">Back to Top</a>
             </Button>

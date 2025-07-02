@@ -102,7 +102,7 @@ const SkillsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Skills & <span className="text-blue-400">Technologies</span>
+            Skills & <span className="text-blue-400 gradient-text">Technologies</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             A comprehensive toolkit for building modern, scalable applications
@@ -115,12 +115,12 @@ const SkillsSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <Tabs defaultValue="frontend" className="w-full">
-            <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 bg-gray-800/50 mb-8">
+            <TabsList className="grid w-full grid-cols-3 lg:grid-cols-6 bg-gray-800/50 mb-8 glass-morphism">
               {Object.entries(skillCategories).map(([key, category]) => (
                 <TabsTrigger 
                   key={key} 
                   value={key}
-                  className="data-[state=active]:bg-blue-600 data-[state=active]:text-white"
+                  className="data-[state=active]:bg-blue-600 data-[state=active]:text-white nav-item-3d"
                 >
                   <span className="mr-2">{category.icon}</span>
                   <span className="hidden sm:inline">{category.title}</span>
@@ -130,10 +130,19 @@ const SkillsSection = () => {
 
             {Object.entries(skillCategories).map(([key, category]) => (
               <TabsContent key={key} value={key}>
-                <Card className="bg-gray-800/30 border-gray-700">
+                <Card className="bg-gray-800/30 border-gray-700 card-3d glass-morphism">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-3 text-2xl">
-                      <span className="text-3xl">{category.icon}</span>
+                      <motion.span 
+                        className="text-3xl"
+                        whileHover={{ 
+                          scale: 1.2,
+                          rotateY: 15,
+                          rotateX: -10
+                        }}
+                      >
+                        {category.icon}
+                      </motion.span>
                       {category.title}
                     </CardTitle>
                   </CardHeader>
@@ -152,20 +161,29 @@ const SkillsSection = () => {
                           }}
                           whileHover={{ 
                             scale: 1.05,
+                            rotateY: 8,
+                            rotateX: -8,
                             transition: { duration: 0.2 }
                           }}
                         >
-                          <Card className="bg-gray-800/50 border-gray-600 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer">
+                          <Card className="bg-gray-800/50 border-gray-600 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer skill-card-3d glass-morphism">
                             <CardContent className="p-4 text-center">
-                              <div className="text-2xl mb-2 group-hover:scale-110 transition-transform">
+                              <motion.div 
+                                className="text-2xl mb-2 group-hover:scale-110 transition-transform"
+                                whileHover={{ 
+                                  rotateY: 15,
+                                  rotateX: -10,
+                                  scale: 1.3
+                                }}
+                              >
                                 {skill.icon}
-                              </div>
+                              </motion.div>
                               <h3 className="font-semibold mb-2 text-sm text-white group-hover:text-blue-400 transition-colors">
                                 {skill.name}
                               </h3>
                               <Badge 
                                 variant="outline" 
-                                className={`text-xs ${getLevelColor(skill.level)}`}
+                                className={`text-xs ${getLevelColor(skill.level)} holographic`}
                               >
                                 {skill.level}
                               </Badge>
@@ -181,32 +199,32 @@ const SkillsSection = () => {
           </Tabs>
         </motion.div>
 
-        {/* Quick Stats */}
+        {/* Enhanced Quick Stats */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
         >
-          <Card className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-blue-500/30 text-center">
+          <Card className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 border-blue-500/30 text-center stat-card-3d glass-morphism neon-glow">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-blue-400 mb-2">25+</div>
               <p className="text-gray-300 text-sm">Technologies</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-green-600/20 to-emerald-600/20 border-green-500/30 text-center">
+          <Card className="bg-gradient-to-br from-green-600/20 to-emerald-600/20 border-green-500/30 text-center stat-card-3d glass-morphism neon-glow">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-green-400 mb-2">4+</div>
               <p className="text-gray-300 text-sm">Years Experience</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-orange-600/20 to-red-600/20 border-orange-500/30 text-center">
+          <Card className="bg-gradient-to-br from-orange-600/20 to-red-600/20 border-orange-500/30 text-center stat-card-3d glass-morphism neon-glow">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-orange-400 mb-2">10+</div>
               <p className="text-gray-300 text-sm">Projects Built</p>
             </CardContent>
           </Card>
-          <Card className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border-purple-500/30 text-center">
+          <Card className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 border-purple-500/30 text-center stat-card-3d glass-morphism neon-glow">
             <CardContent className="p-6">
               <div className="text-3xl font-bold text-purple-400 mb-2">6</div>
               <p className="text-gray-300 text-sm">Skill Categories</p>

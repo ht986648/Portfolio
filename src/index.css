@@ -68,26 +68,280 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom animations */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+/* 3D Hover Effects */
+.card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+.card-3d:hover {
+  transform: rotateY(5deg) rotateX(5deg) translateZ(20px);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+.card-3d-tilt {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
 }
 
-.animate-glow {
-  animation: glow 2s ease-in-out infinite;
+.card-3d-tilt:hover {
+  transform: rotateX(10deg) rotateY(-10deg) translateZ(30px);
+  box-shadow: 
+    -20px 20px 40px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.2);
 }
 
-/* Custom gradient text */
+.button-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.button-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.button-3d:hover::before {
+  left: 100%;
+}
+
+.button-3d:hover {
+  transform: translateY(-3px) rotateX(5deg);
+  box-shadow: 
+    0 15px 30px rgba(0, 0, 0, 0.3),
+    0 5px 15px rgba(59, 130, 246, 0.4);
+}
+
+.button-3d:active {
+  transform: translateY(-1px) rotateX(2deg);
+  box-shadow: 
+    0 8px 15px rgba(0, 0, 0, 0.2),
+    0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.skill-card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+}
+
+.skill-card-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.skill-card-3d:hover::before {
+  opacity: 1;
+}
+
+.skill-card-3d:hover {
+  transform: rotateY(8deg) rotateX(-8deg) translateZ(25px);
+  box-shadow: 
+    -15px 15px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.project-card-3d {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card-3d::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+  opacity: 0;
+  transition: all 0.6s ease;
+  animation: rotate 4s linear infinite;
+}
+
+.project-card-3d:hover::after {
+  opacity: 1;
+}
+
+.project-card-3d:hover {
+  transform: rotateX(5deg) rotateY(-5deg) translateZ(40px);
+  box-shadow: 
+    -25px 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 30px rgba(59, 130, 246, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.avatar-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+}
+
+.avatar-3d::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+  animation: rotate 3s linear infinite;
+}
+
+.avatar-3d:hover::before {
+  opacity: 0.7;
+}
+
+.avatar-3d:hover {
+  transform: rotateY(15deg) rotateX(-10deg) translateZ(30px);
+  box-shadow: 
+    0 30px 60px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(59, 130, 246, 0.5);
+}
+
+.nav-item-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+}
+
+.nav-item-3d::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.nav-item-3d:hover::before {
+  opacity: 1;
+}
+
+.nav-item-3d:hover {
+  transform: translateY(-2px) rotateX(5deg);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.2),
+    0 0 15px rgba(59, 130, 246, 0.3);
+}
+
+.contact-card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+}
+
+.contact-card-3d:hover {
+  transform: rotateY(-8deg) rotateX(8deg) translateZ(35px);
+  box-shadow: 
+    20px -20px 40px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(59, 130, 246, 0.4);
+}
+
+.stat-card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+  position: relative;
+}
+
+.stat-card-3d:hover {
+  transform: rotateX(-10deg) rotateY(10deg) translateZ(20px);
+  box-shadow: 
+    -15px 15px 30px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+/* Floating elements */
+.float-3d {
+  animation: float3d 6s ease-in-out infinite;
+}
+
+@keyframes float3d {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+  }
+  25% { 
+    transform: translateY(-10px) rotateX(2deg) rotateY(1deg); 
+  }
+  50% { 
+    transform: translateY(-20px) rotateX(0deg) rotateY(-1deg); 
+  }
+  75% { 
+    transform: translateY(-10px) rotateX(-2deg) rotateY(1deg); 
+  }
+}
+
+/* Rotation animation */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Pulse 3D effect */
+.pulse-3d {
+  animation: pulse3d 2s ease-in-out infinite;
+}
+
+@keyframes pulse3d {
+  0%, 100% { 
+    transform: scale(1) rotateX(0deg);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+  50% { 
+    transform: scale(1.05) rotateX(5deg);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+  }
+}
+
+/* Tilt effect on mouse move */
+.tilt-3d {
+  transition: transform 0.1s ease-out;
+}
+
+/* Gradient animations */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
 .gradient-text {
   background: linear-gradient(135deg, #3b82f6, #8b5cf6, #06b6d4);
   background-size: 200% 200%;
@@ -95,11 +349,6 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 3s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
 }
 
 /* Focus styles */
@@ -113,16 +362,6 @@ a:focus-visible {
 ::selection {
   background-color: #3b82f6;
   color: white;
-}
-
-/* Custom card hover effects */
-.card-hover {
-  transition: all 0.3s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 /* Loading animation */
@@ -145,4 +384,37 @@ a:focus-visible {
     backdrop-filter: blur(8px);
     background-color: rgba(15, 23, 42, 0.6);
   }
+}
+
+/* Glass morphism effect */
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Neon glow effect */
+.neon-glow {
+  box-shadow: 
+    0 0 5px rgba(59, 130, 246, 0.5),
+    0 0 10px rgba(59, 130, 246, 0.4),
+    0 0 15px rgba(59, 130, 246, 0.3),
+    0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Holographic effect */
+.holographic {
+  background: linear-gradient(45deg, 
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(139, 92, 246, 0.1) 25%,
+    rgba(6, 182, 212, 0.1) 50%,
+    rgba(139, 92, 246, 0.1) 75%,
+    rgba(59, 130, 246, 0.1) 100%);
+  background-size: 400% 400%;
+  animation: holographic-shift 4s ease infinite;
+}
+
+@keyframes holographic-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }

@@ -78,7 +78,7 @@ const AboutSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            About <span className="text-blue-400">Me</span>
+            About <span className="text-blue-400 gradient-text">Me</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Passionate developer with a strong foundation in computer science and a drive for innovation
@@ -91,7 +91,7 @@ const AboutSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Card className="bg-gray-800/50 border-gray-700 h-full">
+            <Card className="bg-gray-800/50 border-gray-700 h-full card-3d glass-morphism">
               <CardHeader>
                 <CardTitle className="text-2xl text-white">My Journey</CardTitle>
               </CardHeader>
@@ -107,9 +107,9 @@ const AboutSection = () => {
                   and decentralized solutions that solve real-world problems.
                 </p>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  <Badge variant="secondary">IIIT Bhagalpur</Badge>
-                  <Badge variant="secondary">CSE 2027</Badge>
-                  <Badge variant="secondary">8.04 CGPA</Badge>
+                  <Badge variant="secondary" className="holographic">IIIT Bhagalpur</Badge>
+                  <Badge variant="secondary" className="holographic">CSE 2027</Badge>
+                  <Badge variant="secondary" className="holographic">8.04 CGPA</Badge>
                 </div>
               </CardContent>
             </Card>
@@ -120,7 +120,7 @@ const AboutSection = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <Card className="bg-gray-800/50 border-gray-700 h-full">
+            <Card className="bg-gray-800/50 border-gray-700 h-full card-3d-tilt glass-morphism">
               <CardHeader>
                 <CardTitle className="text-2xl text-white">Core Skills</CardTitle>
               </CardHeader>
@@ -142,7 +142,7 @@ const AboutSection = () => {
           </motion.div>
         </div>
 
-        {/* Stats Section */}
+        {/* Enhanced Stats Section */}
         <motion.div
           ref={statsRef}
           initial={{ opacity: 0, y: 50 }}
@@ -151,7 +151,7 @@ const AboutSection = () => {
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
         >
           {stats.map((stat, index) => (
-            <Card key={stat.label} className="bg-gray-800/50 border-gray-700 text-center">
+            <Card key={stat.label} className="bg-gray-800/50 border-gray-700 text-center stat-card-3d glass-morphism neon-glow">
               <CardContent className="p-6">
                 <div className={`text-3xl font-bold mb-2 ${stat.color}`}>
                   <span className="stat-number">{stat.value}</span>
@@ -163,7 +163,7 @@ const AboutSection = () => {
           ))}
         </motion.div>
 
-        {/* Achievements Grid */}
+        {/* Enhanced Achievements Grid */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -177,16 +177,24 @@ const AboutSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
             >
-              <Card className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-300 group">
+              <Card className="bg-gray-800/50 border-gray-700 hover:bg-gray-800/70 transition-all duration-300 group card-3d glass-morphism">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-2 bg-gray-700 rounded-lg group-hover:scale-110 transition-transform">
+                    <motion.div 
+                      className="p-2 bg-gray-700 rounded-lg group-hover:scale-110 transition-transform"
+                      whileHover={{ 
+                        rotateY: 15,
+                        rotateX: -10,
+                        scale: 1.2,
+                        boxShadow: "0 10px 20px rgba(59, 130, 246, 0.3)"
+                      }}
+                    >
                       {achievement.icon}
-                    </div>
+                    </motion.div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <h3 className="font-semibold text-white">{achievement.title}</h3>
-                        <Badge variant="outline" className="text-xs">
+                        <Badge variant="outline" className="text-xs holographic">
                           {achievement.badge}
                         </Badge>
                       </div>

@@ -11,10 +11,12 @@ const HeroSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Floating animation for avatar
+      // Enhanced floating animation for avatar
       gsap.to(avatarRef.current, {
         y: -20,
-        duration: 2,
+        rotationX: 5,
+        rotationY: 5,
+        duration: 3,
         ease: "power2.inOut",
         yoyo: true,
         repeat: -1
@@ -67,11 +69,11 @@ const HeroSection = () => {
       id="home" 
       className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden"
     >
-      {/* Animated background elements */}
+      {/* Enhanced animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse float-3d"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000 float-3d"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/5 rounded-full blur-3xl animate-pulse delay-2000 float-3d"></div>
       </div>
 
       <motion.div
@@ -83,10 +85,12 @@ const HeroSection = () => {
         <motion.div variants={itemVariants} className="mb-8">
           <motion.div
             ref={avatarRef}
-            className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl font-bold shadow-2xl"
+            className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-4xl font-bold shadow-2xl avatar-3d pulse-3d"
             whileHover={{ 
               scale: 1.1,
-              boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
+              rotateY: 15,
+              rotateX: -10,
+              boxShadow: "0 30px 60px rgba(59, 130, 246, 0.4)"
             }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -97,7 +101,7 @@ const HeroSection = () => {
             variants={itemVariants}
             className="text-4xl md:text-6xl font-bold mb-4"
           >
-            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent gradient-text">
               Himanshu Tiwari
             </span>
           </motion.h1>
@@ -125,7 +129,7 @@ const HeroSection = () => {
           <Button
             asChild
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg button-3d"
           >
             <a
               href="https://github.com/ht986648"
@@ -141,7 +145,7 @@ const HeroSection = () => {
             asChild
             size="lg"
             variant="outline"
-            className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white transition-all duration-300"
+            className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white button-3d glass-morphism"
           >
             <a
               href="https://www.linkedin.com/in/himanshu-tiwari-97a738291/"
@@ -157,7 +161,7 @@ const HeroSection = () => {
             asChild
             size="lg"
             variant="outline"
-            className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition-all duration-300"
+            className="border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white button-3d glass-morphism"
           >
             <a href="mailto:himanshu.230101059@iiitbh.ac.in">
               <Mail className="mr-2 h-5 w-5" />
@@ -168,7 +172,7 @@ const HeroSection = () => {
           <Button
             size="lg"
             variant="outline"
-            className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white transition-all duration-300"
+            className="border-green-500 text-green-400 hover:bg-green-500 hover:text-white button-3d glass-morphism neon-glow"
           >
             <Download className="mr-2 h-5 w-5" />
             Resume
@@ -181,10 +185,14 @@ const HeroSection = () => {
         >
           <motion.button
             onClick={() => scrollToSection('about')}
-            className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800/50"
+            className="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-800/50 button-3d"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ 
+              scale: 1.1,
+              rotateX: 5,
+              boxShadow: "0 10px 20px rgba(59, 130, 246, 0.3)"
+            }}
           >
             <ChevronDown size={32} />
           </motion.button>

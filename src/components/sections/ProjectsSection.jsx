@@ -106,7 +106,7 @@ const ProjectsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Featured <span className="text-blue-400">Projects</span>
+            Featured <span className="text-blue-400 gradient-text">Projects</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Showcasing innovative solutions built with cutting-edge technologies
@@ -121,26 +121,34 @@ const ProjectsSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.8, delay: index * 0.2 }}
             >
-              <Card className="bg-gray-800/50 border-gray-700 hover:border-blue-500/50 transition-all duration-300 group h-full overflow-hidden">
-                {/* Project Header */}
+              <Card className="bg-gray-800/50 border-gray-700 hover:border-blue-500/50 transition-all duration-300 group h-full overflow-hidden project-card-3d glass-morphism">
+                {/* Enhanced Project Header */}
                 <div className="relative p-6 text-center bg-gradient-to-br from-gray-800 to-gray-900">
-                  <div className="text-4xl mb-3 group-hover:scale-110 transition-transform">
+                  <motion.div 
+                    className="text-4xl mb-3 group-hover:scale-110 transition-transform"
+                    whileHover={{ 
+                      scale: 1.3,
+                      rotateY: 15,
+                      rotateX: -10,
+                      textShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
+                    }}
+                  >
                     {project.image}
-                  </div>
+                  </motion.div>
                   
-                  {/* Badges */}
+                  {/* Enhanced Badges */}
                   <div className="absolute top-4 right-4 flex flex-col gap-2">
-                    <Badge variant="outline" className={getCategoryColor(project.category)}>
+                    <Badge variant="outline" className={`${getCategoryColor(project.category)} holographic`}>
                       {project.category}
                     </Badge>
                     {project.achievement && (
-                      <Badge variant="outline" className={project.achievement.color}>
+                      <Badge variant="outline" className={`${project.achievement.color} holographic`}>
                         {project.achievement.icon}
                         <span className="ml-1 text-xs">{project.achievement.text}</span>
                       </Badge>
                     )}
                     {project.status && (
-                      <Badge variant="outline" className={project.status.color}>
+                      <Badge variant="outline" className={`${project.status.color} holographic`}>
                         {project.status.text}
                       </Badge>
                     )}
@@ -156,7 +164,7 @@ const ProjectsSection = () => {
                     {project.description}
                   </p>
 
-                  {/* Highlights */}
+                  {/* Enhanced Highlights */}
                   <div className="mb-4">
                     <h4 className="text-sm font-semibold text-blue-400 mb-3 flex items-center gap-2">
                       <Zap className="h-4 w-4" />
@@ -164,50 +172,72 @@ const ProjectsSection = () => {
                     </h4>
                     <div className="grid grid-cols-1 gap-2">
                       {project.highlights.map((highlight, i) => (
-                        <div key={i} className="flex items-center gap-2 text-sm text-gray-400">
+                        <motion.div 
+                          key={i} 
+                          className="flex items-center gap-2 text-sm text-gray-400"
+                          whileHover={{ 
+                            x: 5,
+                            color: "#60a5fa"
+                          }}
+                        >
                           <span className="text-blue-400">{highlight.icon}</span>
                           {highlight.text}
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
 
                   <Separator className="my-4 bg-gray-700" />
 
-                  {/* Stats */}
+                  {/* Enhanced Stats */}
                   <div className="mb-4">
                     <div className="grid grid-cols-3 gap-4 text-center">
                       {Object.entries(project.stats).map(([key, value]) => (
-                        <div key={key} className="bg-gray-700/50 rounded-lg p-2">
+                        <motion.div 
+                          key={key} 
+                          className="bg-gray-700/50 rounded-lg p-2 stat-card-3d"
+                          whileHover={{ 
+                            scale: 1.05,
+                            backgroundColor: "rgba(59, 130, 246, 0.1)"
+                          }}
+                        >
                           <div className="text-sm font-bold text-blue-400">{value}</div>
                           <div className="text-xs text-gray-400 capitalize">{key}</div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Tech Stack */}
+                  {/* Enhanced Tech Stack */}
                   <div className="mb-6">
                     <div className="flex flex-wrap gap-2">
                       {project.techStack.map((tech) => (
-                        <Badge
+                        <motion.div
                           key={tech}
-                          variant="secondary"
-                          className="bg-gray-700/50 text-gray-300 hover:bg-gray-600/50 transition-colors"
+                          whileHover={{ 
+                            scale: 1.1,
+                            rotateY: 5,
+                            rotateX: -5
+                          }}
                         >
-                          {tech}
-                        </Badge>
+                          <Badge
+                            variant="secondary"
+                            className="bg-gray-700/50 text-gray-300 hover:bg-gray-600/50 transition-colors holographic"
+                          >
+                            {tech}
+                          </Badge>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
+                  {/* Enhanced Action Buttons */}
                   <div className="flex gap-3 mt-auto">
                     <Button
                       asChild
                       variant="outline"
                       size="sm"
-                      className="flex-1 border-gray-600 hover:border-blue-500 hover:text-blue-400"
+                      className="flex-1 border-gray-600 hover:border-blue-500 hover:text-blue-400 button-3d glass-morphism"
                     >
                       <a
                         href={project.github}
@@ -221,7 +251,7 @@ const ProjectsSection = () => {
                     <Button
                       asChild
                       size="sm"
-                      className="flex-1 bg-blue-600 hover:bg-blue-700"
+                      className="flex-1 bg-blue-600 hover:bg-blue-700 button-3d neon-glow"
                     >
                       <a
                         href={project.demo}
@@ -239,7 +269,7 @@ const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* View More Projects Button */}
+        {/* Enhanced View More Projects Button */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -250,7 +280,7 @@ const ProjectsSection = () => {
             asChild
             size="lg"
             variant="outline"
-            className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white"
+            className="border-blue-500 text-blue-400 hover:bg-blue-500 hover:text-white button-3d glass-morphism neon-glow"
           >
             <a
               href="https://github.com/ht986648"

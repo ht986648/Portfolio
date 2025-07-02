@@ -41,7 +41,7 @@ const Navigation = () => {
       animate={{ y: 0 }}
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-gray-900/95 backdrop-blur-md border-b border-gray-800 shadow-lg' 
+          ? 'bg-gray-900/95 backdrop-blur-md border-b border-gray-800 shadow-lg glass-morphism' 
           : 'bg-transparent'
       }`}
     >
@@ -50,12 +50,16 @@ const Navigation = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-300 bg-clip-text text-transparent"
+            className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-300 bg-clip-text text-transparent gradient-text"
+            whileHover={{ 
+              scale: 1.05,
+              textShadow: "0 0 20px rgba(59, 130, 246, 0.5)"
+            }}
           >
             Himanshu Tiwari
           </motion.div>
           
-          {/* Desktop Navigation */}
+          {/* Enhanced Desktop Navigation */}
           <div className="hidden md:flex space-x-1">
             {navItems.map((item, index) => (
               <motion.div
@@ -67,7 +71,7 @@ const Navigation = () => {
                 <Button
                   variant="ghost"
                   onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`relative px-4 py-2 transition-all duration-300 ${
+                  className={`relative px-4 py-2 transition-all duration-300 nav-item-3d ${
                     activeSection === item.toLowerCase() 
                       ? 'text-blue-400' 
                       : 'text-gray-300 hover:text-white'
@@ -77,7 +81,7 @@ const Navigation = () => {
                   {activeSection === item.toLowerCase() && (
                     <motion.div
                       layoutId="activeTab"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-400"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-400 neon-glow"
                       initial={false}
                       transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     />
@@ -87,11 +91,11 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Mobile menu button */}
+          {/* Enhanced Mobile menu button */}
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden"
+            className="md:hidden button-3d"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <AnimatePresence mode="wait">
@@ -120,7 +124,7 @@ const Navigation = () => {
           </Button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Enhanced Mobile Navigation */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -128,7 +132,7 @@ const Navigation = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className="md:hidden border-t border-gray-800 bg-gray-900/95 backdrop-blur-md"
+              className="md:hidden border-t border-gray-800 bg-gray-900/95 backdrop-blur-md glass-morphism"
             >
               <div className="py-4 space-y-2">
                 {navItems.map((item, index) => (
@@ -141,7 +145,7 @@ const Navigation = () => {
                     <Button
                       variant="ghost"
                       onClick={() => scrollToSection(item.toLowerCase())}
-                      className="w-full justify-start text-left py-3 hover:text-blue-400 transition-colors"
+                      className="w-full justify-start text-left py-3 hover:text-blue-400 transition-colors nav-item-3d"
                     >
                       {item}
                     </Button>
